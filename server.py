@@ -4,11 +4,19 @@ import socket
 PORT = 53
 IP = "127.0.0.1"
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind((IP, PORT))
+def build_response(request):
+    return ""
 
-while 1:
-    recvd_data, addr = sock.recvfrom(512)
-    print (recvd_data, addr)
+def main():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind((IP, PORT))
+
+    while 1:
+        request, addr = sock.recvfrom(512)
+        print (request, addr)
+        response = build_response(request)
+        sock.sendto(response, addr)
+
+main()
 
 
